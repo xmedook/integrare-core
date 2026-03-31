@@ -33,6 +33,8 @@ require_once INTEGRARE_PATH . 'includes/class-integrare-auth.php';
 require_once INTEGRARE_PATH . 'includes/class-integrare-front.php';
 require_once INTEGRARE_PATH . 'includes/class-integrare-admin-ajax.php';
 require_once INTEGRARE_PATH . 'admin/class-integrare-admin.php';
+require_once INTEGRARE_PATH . 'includes/class-integrare-dolibarr.php';
+require_once INTEGRARE_PATH . 'includes/class-integrare-sync.php';
 
 // ── Activation / Deactivation ──────────────────────────────
 register_activation_hook( __FILE__, array( 'Integrare_Activator', 'activate' ) );
@@ -72,6 +74,9 @@ function integrare_core_init() {
 
     // Admin AJAX (frontend dashboard)
     new Integrare_Admin_Ajax();
+
+    // Dolibarr sync
+    new Integrare_Sync();
 
     // Admin
     if ( is_admin() ) {

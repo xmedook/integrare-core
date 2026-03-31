@@ -108,6 +108,8 @@ class Integrare_Orders {
 
             $wpdb->query( 'COMMIT' );
 
+            do_action( 'integrare_order_created', $order_id );
+
             return $order_id;
 
         } catch ( Exception $e ) {

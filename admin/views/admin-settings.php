@@ -9,6 +9,10 @@ $saved = false;
 
 // Handle form submission
 if ( isset( $_POST['integrare_save_settings'] ) && check_admin_referer( 'integrare_settings_save' ) ) {
+    // Dolibarr
+    update_option( 'integrare_dolibarr_url', esc_url_raw( $_POST['dolibarr_url'] ?? 'https://admin.integrare.mx/api/index.php' ) );
+    update_option( 'integrare_dolibarr_key', sanitize_text_field( $_POST['dolibarr_key'] ?? '' ) );
+
     // Stripe
     update_option( 'integrare_stripe_mode', sanitize_text_field( $_POST['stripe_mode'] ?? 'test' ) );
     update_option( 'integrare_stripe_pk_live', sanitize_text_field( $_POST['stripe_pk_live'] ?? '' ) );
@@ -36,6 +40,11 @@ if ( isset( $_POST['integrare_save_settings'] ) && check_admin_referer( 'integra
 
     $saved = true;
 }
+
+// Read current values — Dolibarr
+$dolibarr_url = get_option( 'integrare_dolibarr_url', 'https://admin.integrare.mx/api/index.php' );
+$dolibarr_key = get_option( 'integrare_dolibarr_key', '' );
+$dolibarr_log = get_option( 'integrare_dolibarr_log', array() );
 
 // Read current values — Stripe
 $stripe_mode     = get_option( 'integrare_stripe_mode', 'test' );
@@ -250,6 +259,75 @@ $microsoft_tenant_id      = get_option( 'integrare_microsoft_tenant_id', '' );
             </p>
         </div>
 
+        <!-- ── DOLIBARR ───────────────────────────────────── -->
+        <div style="background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:24px; margin-bottom:24px;">
+            <h2 style="margin:0 0 4px; font-size:18px; display:flex; align-items:center; gap:8px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4a6741" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                Integracion Dolibarr ERP
+            </h2>
+            <p style="color:#666; margin:0 0 16px; font-size:13px;">Sincroniza clientes, pedidos y productos con Dolibarr.</p>
+
+            <table class="form-table" role="presentation">
+                <tr>
+                    <th scope="row"><label for="dolibarr_url">URL API</label></th>
+                    <td>
+                        <input type="url" name="dolibarr_url" id="dolibarr_url" class="regular-text"
+                               value="<?php echo esc_attr( $dolibarr_url ); ?>"
+                               placeholder="https://admin.integrare.mx/api/index.php">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="dolibarr_key">API Key</label></th>
+                    <td style="display:flex; align-items:center; gap:8px;">
+                        <input type="password" name="dolibarr_key" id="dolibarr_key" class="regular-text"
+                               value="<?php echo esc_attr( $dolibarr_key ); ?>"
+                               placeholder="DOLAPIKEY"
+                               style="font-family:monospace;">
+                        <button type="button" class="button"
+                                onclick="(function(b){var f=document.getElementById('dolibarr_key');f.type=f.type==='password'?'text':'password';b.textContent=f.type==='password'?'Ver':'Ocultar';})(this)">
+                            Ver
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+            <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                <button type="button" id="dol-test-btn" class="button"
+                        data-nonce="<?php echo esc_attr( wp_create_nonce( 'integrare_dolibarr_nonce' ) ); ?>">
+                    Probar conexion
+                </button>
+                <button type="button" id="dol-sync-btn" class="button"
+                        data-nonce="<?php echo esc_attr( wp_create_nonce( 'integrare_dolibarr_nonce' ) ); ?>">
+                    Sincronizar productos
+                </button>
+                <span id="dol-status" style="font-size:13px; color:#555;"></span>
+            </div>
+
+            <?php if ( ! empty( $dolibarr_log ) ) : ?>
+                <div style="margin-top:20px;">
+                    <h3 style="font-size:14px; margin-bottom:8px; color:#333;">Ultimos errores</h3>
+                    <table style="width:100%; border-collapse:collapse; font-size:12px;">
+                        <thead>
+                            <tr style="background:#f8f8f8;">
+                                <th style="padding:6px 8px; text-align:left; border:1px solid #e0e0e0;">Fecha</th>
+                                <th style="padding:6px 8px; text-align:left; border:1px solid #e0e0e0;">Contexto</th>
+                                <th style="padding:6px 8px; text-align:left; border:1px solid #e0e0e0;">Error</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ( array_slice( $dolibarr_log, 0, 10 ) as $entry ) : ?>
+                                <tr>
+                                    <td style="padding:5px 8px; border:1px solid #e8e8e8; white-space:nowrap;"><?php echo esc_html( $entry['time'] ); ?></td>
+                                    <td style="padding:5px 8px; border:1px solid #e8e8e8; font-family:monospace;"><?php echo esc_html( $entry['context'] ); ?></td>
+                                    <td style="padding:5px 8px; border:1px solid #e8e8e8; color:#c0392b;"><?php echo esc_html( $entry['error'] ); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
+
         <p class="submit">
             <button type="submit" name="integrare_save_settings" class="button button-primary button-hero">
                 Guardar Configuracion
@@ -257,3 +335,34 @@ $microsoft_tenant_id      = get_option( 'integrare_microsoft_tenant_id', '' );
         </p>
     </form>
 </div>
+
+<script>
+(function(){
+    function dolAjax(action, btnId, statusId) {
+        var btn    = document.getElementById(btnId);
+        var status = document.getElementById(statusId);
+        if (!btn) return;
+
+        btn.addEventListener('click', function() {
+            btn.disabled = true;
+            status.textContent = 'Procesando...';
+
+            var data = new FormData();
+            data.append('action', action);
+            data.append('nonce', btn.dataset.nonce);
+
+            fetch(ajaxurl, { method: 'POST', body: data })
+                .then(function(r){ return r.json(); })
+                .then(function(res){
+                    status.textContent = res.data ? res.data.message : 'Error desconocido.';
+                    status.style.color = res.success ? '#2e7d32' : '#c0392b';
+                })
+                .catch(function(){ status.textContent = 'Error de red.'; status.style.color = '#c0392b'; })
+                .finally(function(){ btn.disabled = false; });
+        });
+    }
+
+    dolAjax('integrare_test_dolibarr',  'dol-test-btn',  'dol-status');
+    dolAjax('integrare_sync_products',  'dol-sync-btn',  'dol-status');
+})();
+</script>
