@@ -2,6 +2,7 @@
 /**
  * Template: Catalog — Landing + Product Grid
  * Route: /tienda/
+ * v2 — contenido comercial real
  */
 ?>
 
@@ -12,21 +13,23 @@
     <div class="int-landing-hero-inner">
         <div class="int-landing-hero-badge">
             <span class="int-dot"></span>
-            Distribuidora B2B · Especialistas en Hemodiálisis
+            Distribuidora B2B · Zapopan, Jalisco
         </div>
         <h1 class="int-landing-hero-title">
-            Equipo médico<br>especializado,<br><em>directo a tu clínica.</em>
+            Tu inventario médico,<br><em>sin ocupar<br>tu almacén.</em>
         </h1>
         <p class="int-landing-hero-subtitle">
-            Consumibles de hemodiálisis y soluciones de infusión para clínicas, hospitales y distribuidores. Precios por volumen, inventario disponible, entrega confiable.
+            Consumibles especializados en hemodiálisis disponibles cuando los necesitas. Sin inventario propio, sin esperas. Nos encargamos de tener en stock lo que tu clínica u hospital prefiere no almacenar.
         </p>
         <div class="int-landing-hero-actions">
-            <a href="#int-catalogo" class="int-btn int-btn-primary int-btn-lg">Ver catálogo</a>
-            <?php if ( ! $is_logged_in ) : ?>
-                <a href="<?php echo home_url('/tienda/auth/?vista=registro'); ?>" class="int-btn int-btn-outline int-btn-lg">Crear cuenta</a>
-            <?php else : ?>
-                <a href="<?php echo home_url('/tienda/cuenta/'); ?>" class="int-btn int-btn-outline int-btn-lg">Mi cuenta</a>
-            <?php endif; ?>
+            <a href="<?php echo home_url('/tienda/auth/?vista=registro'); ?>" class="int-btn int-btn-primary int-btn-lg">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                Crear cuenta y ver precios
+            </a>
+            <a href="https://wa.me/523314603933?text=Hola%2C+me+interesa+conocer+el+cat%C3%A1logo+de+Integrare" target="_blank" class="int-btn int-btn-outline int-btn-lg">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                Consultar por WhatsApp
+            </a>
         </div>
     </div>
     <div class="int-landing-hero-visual">
@@ -52,13 +55,13 @@
 <section class="int-trust-bar">
     <div class="int-trust-bar-inner">
         <div class="int-trust-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>Proveedores certificados</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Disponibilidad inmediata</span>
         </div>
         <div class="int-trust-divider"></div>
         <div class="int-trust-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Entrega just-in-time</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><line x1="16" y1="21" x2="16" y2="7"/><line x1="8" y1="21" x2="8" y2="7"/></svg>
+            <span>Sin inventario propio necesario</span>
         </div>
         <div class="int-trust-divider"></div>
         <div class="int-trust-item">
@@ -67,22 +70,22 @@
         </div>
         <div class="int-trust-divider"></div>
         <div class="int-trust-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            <span>Precios por volumen</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Bodega en Zapopan, Jalisco</span>
         </div>
     </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     ESPECIALIDAD
+     PROPUESTA DE VALOR
 ════════════════════════════════════════════════════ -->
 <section class="int-specialty">
     <div class="int-specialty-inner">
         <div class="int-specialty-text">
-            <div class="int-section-eyebrow">Especialización</div>
-            <h2 class="int-section-title">Enfocados en<br>hemodiálisis y<br>cuidado renal.</h2>
+            <div class="int-section-eyebrow">Nuestra especialidad</div>
+            <h2 class="int-section-title">Proveedor just-in-time<br>para tu unidad<br>de hemodiálisis.</h2>
             <p class="int-section-body">
-                Somos distribuidores especializados en insumos para unidades de hemodiálisis. Trabajamos con clínicas de diálisis, hospitales y otros distribuidores que requieren productos de calidad con disponibilidad constante.
+                Nos especializamos en tener en stock los consumibles que hospitales y clínicas prefieren no almacenar. Cuando los necesitas, están disponibles. Sin comprometer espacio, sin capital inmovilizado.
             </p>
             <ul class="int-specialty-list">
                 <li>
@@ -91,7 +94,7 @@
                 </li>
                 <li>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    Soluciones de infusión e irrigación
+                    Soluciones de infusión e irrigación PISA
                 </li>
                 <li>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -99,12 +102,12 @@
                 </li>
                 <li>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    Catálogo en expansión continua
+                    Catálogo en expansión según demanda
                 </li>
             </ul>
         </div>
         <div class="int-specialty-clients">
-            <div class="int-section-eyebrow">¿Quiénes son nuestros clientes?</div>
+            <div class="int-section-eyebrow">¿A quién atendemos?</div>
             <div class="int-client-cards">
                 <div class="int-client-card">
                     <div class="int-client-icon">
@@ -112,7 +115,7 @@
                     </div>
                     <div>
                         <strong>Clínicas de hemodiálisis</strong>
-                        <p>Unidades especializadas con consumo frecuente y predecible</p>
+                        <p>Unidades con consumo frecuente que requieren reabastecimiento ágil y confiable</p>
                     </div>
                 </div>
                 <div class="int-client-card">
@@ -121,7 +124,7 @@
                     </div>
                     <div>
                         <strong>Hospitales</strong>
-                        <p>Áreas de nefrología y terapia intensiva con requerimientos específicos</p>
+                        <p>Áreas de nefrología y terapia intensiva que buscan proveedores especializados</p>
                     </div>
                 </div>
                 <div class="int-client-card">
@@ -130,7 +133,7 @@
                     </div>
                     <div>
                         <strong>Otros distribuidores</strong>
-                        <p>Mayoristas y distribuidores regionales interesados en ampliar su catálogo</p>
+                        <p>Mayoristas que quieren ampliar su catálogo con productos especializados</p>
                     </div>
                 </div>
             </div>
@@ -148,25 +151,40 @@
         <div class="int-how-steps">
             <div class="int-how-step">
                 <div class="int-how-step-num">01</div>
-                <h3>Solicita acceso</h3>
-                <p>Crea tu cuenta como cliente registrado. Revisamos tu perfil y te damos acceso al catálogo completo con precios.</p>
+                <h3>Crea tu cuenta</h3>
+                <p>Regístrate en minutos. El acceso es inmediato — sin aprobación manual. Al entrar ya puedes ver precios y disponibilidad.</p>
             </div>
             <div class="int-how-arrow">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </div>
             <div class="int-how-step">
                 <div class="int-how-step-num">02</div>
-                <h3>Cotiza por volumen</h3>
-                <p>Explora el catálogo, selecciona cantidades y calcula automáticamente tus precios con descuentos por volumen.</p>
+                <h3>Haz tu pedido</h3>
+                <p>Elige productos, calcula tu precio por volumen y paga en línea con tarjeta. Para pedidos grandes o crédito, te contactamos directamente.</p>
             </div>
             <div class="int-how-arrow">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </div>
             <div class="int-how-step">
                 <div class="int-how-step-num">03</div>
-                <h3>Recibe en tu unidad</h3>
-                <p>Confirmamos tu pedido y coordinamos la entrega directamente a tu clínica u hospital con tiempos acordados.</p>
+                <h3>Retira en bodega</h3>
+                <p>Retira tu pedido en nuestra bodega en Zapopan, Jalisco (CP 45138). Próximamente entregas en zona metropolitana de Guadalajara.</p>
             </div>
+        </div>
+        <div class="int-how-payments">
+            <span class="int-how-pay-label">Formas de pago:</span>
+            <span class="int-how-pay-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                Tarjeta de crédito/débito
+            </span>
+            <span class="int-how-pay-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Transferencia / OC
+            </span>
+            <span class="int-how-pay-chip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                Crédito (previa solicitud)
+            </span>
         </div>
     </div>
 </section>
@@ -189,7 +207,6 @@
         </form>
     </div>
 
-    <!-- Filtros de categoría -->
     <?php if ( ! empty($categories) ) : ?>
     <div class="int-filters">
         <a href="<?php echo home_url('/tienda/'); ?>"
@@ -206,13 +223,12 @@
     </div>
     <?php endif; ?>
 
-    <!-- Grid de productos -->
     <div class="int-product-grid">
         <?php if ( empty($products) ) : ?>
             <div class="int-empty-state">
                 <p>No se encontraron productos<?php echo $search ? ' para "' . esc_html($search) . '"' : ''; ?>.</p>
                 <?php if ($search) : ?>
-                    <a href="<?php echo home_url('/tienda/'); ?>" class="int-btn int-btn-outline" style="margin-top:16px;">Ver todos los productos</a>
+                    <a href="<?php echo home_url('/tienda/'); ?>" class="int-btn int-btn-outline" style="margin-top:16px;">Ver todos</a>
                 <?php endif; ?>
             </div>
         <?php else : ?>
@@ -269,16 +285,19 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     CTA FINAL (solo no logueados)
+     CTA FINAL
 ════════════════════════════════════════════════════ -->
 <?php if ( ! $is_logged_in ) : ?>
 <section class="int-landing-cta">
     <div class="int-landing-cta-inner">
-        <h2>¿Listo para solicitar acceso?</h2>
-        <p>Los precios y la disponibilidad son exclusivos para clientes registrados. El proceso es rápido.</p>
+        <h2>¿Listo para ver precios?</h2>
+        <p>Crea tu cuenta en minutos — acceso inmediato, sin aprobación. Para pedidos por volumen o crédito, también podemos hablar directamente.</p>
         <div class="int-landing-cta-actions">
             <a href="<?php echo home_url('/tienda/auth/?vista=registro'); ?>" class="int-btn int-btn-primary int-btn-lg">Crear cuenta gratuita</a>
-            <a href="<?php echo home_url('/tienda/auth/'); ?>" class="int-btn int-btn-outline int-btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.4);">Ya tengo cuenta</a>
+            <a href="https://wa.me/523314603933?text=Hola%2C+me+interesa+conocer+el+cat%C3%A1logo+de+Integrare" target="_blank" class="int-btn int-btn-outline int-btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.4);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                Hablar por WhatsApp
+            </a>
         </div>
     </div>
 </section>
