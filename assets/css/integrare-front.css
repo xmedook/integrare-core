@@ -3428,3 +3428,34 @@
         align-items: center;
     }
 }
+
+/* ── How Payments ──────────────────────────────── */
+.int-how-payments {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--int-border);
+}
+
+.int-how-pay-label {
+    font-size: 13px;
+    color: var(--int-text-muted);
+    font-weight: 500;
+}
+
+.int-how-pay-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--int-radius-pill);
+    background: var(--int-bg);
+    border: 1px solid var(--int-border);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--int-text-secondary);
+}
